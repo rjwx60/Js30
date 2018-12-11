@@ -1,0 +1,56 @@
+html {
+    font-size: 10px;
+    background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+    background-size: cover;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* 外围 */
+.keys {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 按键们 */
+.key {
+    width: 10rem;
+    margin: 1rem;
+    padding: 1rem .5rem;
+    border: .4rem solid black;
+    border-radius: .5rem;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 .5rem black;
+	transition: all .07s ease;
+}
+/* 动画特效 */
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+/* 文字 */
+kbd {
+    display: block;
+    font-size: 4rem;
+}
+
+/* 音效描述 */
+.sound {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: #ffc600;
+}
