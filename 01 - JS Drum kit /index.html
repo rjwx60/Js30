@@ -61,6 +61,27 @@
 	<audio data-key="76" src="sounds/tink.wav"></audio>
 
 	<script>
+		// 获取所有 key 类节点并转换
+		var keyList = Array.from(document.querySelectorAll('.key'))
+		// 为每个 key 添加事件
+		keyList.forEach(cv => {
+			// 动画过渡结束事件
+			cv.addEventListener('transitionend',function(e){
+				if(e.propertyName !== 'transform'){
+					return;
+				}
+				e.target.classList.remove('playing');
+			})
+		})
+		window.addEventListener('keydown',function(e){
+			let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+			let key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+			if (!audio) return;
+
+			key.classList.add('playing');
+			audio.currentTime = 0;
+			audio.play();
+		})
 	</script>
 </body>
 
