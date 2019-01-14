@@ -20,7 +20,7 @@ html {
     align-items: center;
 }
 
-/* 按键们 */
+/* 按键 */
 .key {
     width: 10rem;
     margin: 1rem;
@@ -34,7 +34,7 @@ html {
     text-shadow: 0 0 .5rem black;
 	transition: all .07s ease;
 }
-/* 动画特效 */
+/* 特效 */
 .playing {
     transform: scale(1.1);
     border-color: #ffc600;
