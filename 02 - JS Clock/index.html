@@ -126,21 +126,26 @@
 
 		var timeInit = () => {
 			var time = new Date();
-			// 0 deg 是水平，90 deg 是垂直 
+			// 默认水平, 所以需要加上 90 deg; 0 deg 是水平，90 deg 是垂直;
 			var sec = time.getSeconds();
 			secDegree = (sec / 60) * 360 + 90;
 
 			var mi = time.getMinutes();
+			// 加上秒针影响
 			miDegree = (mi / 60) * 360 + 90 + (sec / 60 / 60) * 360;
 
 			var hou = time.getHours();
+			// 加上分针和秒针影响
 			hourDegree = (hou / 12) * 360 + 90 + mi / 12 / 60 * 360 + (sec / 12 / 60 / 60) * 360;
 		}
 
 		var timeSet = () => {
 			secDegree += (1 / 60) * 360;
+			// 加上秒针影响
 			miDegree += ((1 / 60) / 60) * 360;
+			// 加上分针影响
 			hourDegree += (((1 / 60) / 60) / 12);
+			// 作用
 			second.style.transform = `rotate(${secDegree}deg)`;
 			min.style.transform = `rotate(${miDegree}deg)`;
 			hour.style.transform = `rotate(${hourDegree}deg)`;
@@ -148,6 +153,13 @@
 
 		timeInit();
 		setInterval(timeSet, 1000);
+
+		// 思路一:
+		// 1. 时间获取和位置初始化
+		// 2. 在初始化参数上，累加每秒移动，并作用于div上
+
+		// 知识点:
+		// 1. Date 相关API的使用
 	</script>
 </body>
 
