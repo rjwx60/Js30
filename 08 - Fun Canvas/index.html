@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>HTML5 Canvas</title>
 </head>
+
 <body>
 	<style>
-		html,body {
+		html,
+		body {
 			margin: 0;
 		}
 	</style>
 
+
 	<canvas id="draw" width="800" height="800"></canvas>
 	<script>
+
+
+
+		// 获得渲染上下文和它的绘画功能 
 		const canvas = document.querySelector('#draw');
 		const ctx = canvas.getContext('2d');
 
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 
+		// 初始颜色
 		ctx.strokeStyle = '#BADA55';
+		// 决定了图形中两线段连接处所显示样式
 		ctx.lineJoin = 'round';
+		// 决定了线段端点显示样式
 		ctx.lineCap = 'round';
+		// 线条宽度
 		ctx.lineWidth = 100;
-		// ctx.globalCompositeOperation = 'multiply';
-		let isDrawing = false;
-		let lastX = 0;
-		let lastY = 0;
-		let hue = 0;
-		let direction = true;
+
+		let isDrawing = false, lastX = 0, lastY = 0, hue = 0, direction = true;
 
 		function draw(e) {
-			if (!isDrawing) return; // stop the fn from running when they are not moused down
-			console.log(e);
+			// 根据标志位是否开始画图
+			if (!isDrawing) return; 
+
+			// 设置图形轮廓的颜色
 			ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+			// 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径
 			ctx.beginPath();
-			// start from
+			// 移动笔触
 			ctx.moveTo(lastX, lastY);
-			// go to
+			// 绘制直线
 			ctx.lineTo(e.offsetX, e.offsetY);
+			// 通过线条来绘制图形轮廓
 			ctx.stroke();
+			// 更新起点
 			[lastX, lastY] = [e.offsetX, e.offsetY];
-			hue++;
-			if (hue >= 360) {
-				hue = 0;
-			}
+
+			// 颜色控制
+			hue = hue >= 360 ? 0 : hue + 1;
+
+			// 粗细控制
 			if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
 				direction = !direction;
 			}
@@ -58,12 +73,17 @@
 		}
 		canvas.addEventListener('mousedown', (e) => {
 			isDrawing = true;
+			// 新建起点
 			[lastX, lastY] = [e.offsetX, e.offsetY];
 		});
 
 		canvas.addEventListener('mousemove', draw);
+		// 画图标志位
 		canvas.addEventListener('mouseup', () => isDrawing = false);
 		canvas.addEventListener('mouseout', () => isDrawing = false);
+
+		// 知识点: 
+		// 1. Canvas base API
 	</script>
 
 
