@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>JS Reference VS Copy</title>
+</head>
+
+<body>
+	<script>
+
+		let original = ['Js', 'As', 'Bs', 'Hs'];
+		
+		// 引用，会相互影响
+		let team = original;
+
+		// 浅拷贝
+		let team2 = original.slice();
+
+		let team3 = [].concat(original);
+
+		let team4 = [...original];
+
+		let team5 = Array.from(original);
+
+
+
+
+		let person = {
+			name: 'Js Bos',
+			age: 80,
+			cars: ['FT','BMW']
+		};
+
+		// 浅拷贝
+		let person2 = Object.assign({}, person, { number: 99, age: 12 });
+		
+		// 深拷贝
+		let person3 = JSON.parse(JSON.stringify(person));
+
+		person.cars.push('HQ');
+
+		console.log('person',person);
+		console.log('person2',person2);
+		console.log('person3',person3);
+	</script>
+</body>
+
+</html>
