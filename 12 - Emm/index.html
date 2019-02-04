@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Key Direction</title>
+	<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+
+<body>
+	<script>
+		var pressed = [], secretCode = 'javascript';
+		window.addEventListener('keyup', (e) => {
+			// 思路一: 使用 splice 删除前面的并用 push 推入，类似队列
+			// pressed.push(e.key);
+			// pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+
+			// 思路二：略过
+			pressed.push(e.key);
+			if(pressed.length > secretCode.length){
+				pressed.shift();
+			}
+
+			
+			if (pressed.join('').includes(secretCode)) {
+				cornify_add();
+			}
+		});
+	</script>
+</body>
+
+</html>
