@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Video Speed Scrubber</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<video class="flex" width="765" height="430" src="./Shape of You.mp4" loop controls></video>
+		<div class="speed">
+			<div class="speed-bar">1×</div>
+		</div>
+	</div>
+
+	<script>
+		let speed = document.querySelector('.speed');
+		let bar = speed.querySelector('.speed-bar');
+		let video = document.querySelector('.flex');
+
+		speed.addEventListener('mousemove', handleMove);
+
+
+		function handleMove(e) {
+			let y = e.pageY - this.offsetTop;
+			let percent = y / this.offsetHeight;
+			let min = 0.4;
+			let max = 4;
+			let height = Math.round(percent * 100) + '%';
+
+			let playbackRate = percent * (max - min) + min;
+
+			// 控制样式
+			bar.style.height = height;
+			bar.textContent = playbackRate.toFixed(2) + '×';
+
+			// 控制速率
+			video.playbackRate = playbackRate;
+		}
+
+
+	</script>
+</body>
+
+</html>
